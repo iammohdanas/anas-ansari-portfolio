@@ -1,273 +1,409 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Mohd Anas Ansari | Full-Stack Developer & Agentic AI Engineer</title>
-  <meta content="Mohd Anas Ansari - Full-Stack Developer, Agentic AI Engineer, and Fintech Platform Developer." name="description">
-  <meta content="Python, Django, FastAPI, ReactJS, Agentic AI, LangChain, LangGraph, RAG, Fintech, Full Stack Developer" name="keywords">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mohd Anas Ansari | Full-Stack & Agentic AI Engineer</title>
+  <meta name="description" content="Mohd Anas Ansari - Full-Stack Developer, Agentic AI Engineer, and Fintech Platform Developer.">
 
-  <!-- Favicons -->
-  <link href="assets/img/anas-profile1.jpeg" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    rel="stylesheet">
+  <!-- Typography: Clash Display & Cabinet Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=cabinet-grotesk@400,500,700,800&display=swap" rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <!-- Three.js Engine & Motion Suite -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
 
-  <!-- Main CSS File -->
-  <link href="assets/css/main.css" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Clash Display', 'sans-serif'],
+            sans: ['Cabinet Grotesk', 'Plus Jakarta Sans', 'sans-serif'],
+            mono: ['Space Mono', 'monospace'],
+          },
+          colors: {
+            obsidian: '#040711',
+            rosegold: {
+              300: '#f7d6cd',
+              400: '#e8b4a2',
+              500: '#d99480',
+              600: '#b86e5a',
+            }
+          }
+        }
+      }
+    }
+  </script>
 
-  <!-- =======================================================
-  * Template Name: iPortfolio
-  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
-  * Updated: Jun 29 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+  <style>
+    * {
+      box-sizing: border-box;
+      border-color: rgba(232, 180, 162, 0.12);
+    }
+    
+    body {
+      background-color: #040711;
+      color: #f1f5f9;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    #webgl-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .film-grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 40;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    .luxury-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.035) 0%, rgba(8, 14, 28, 0.65) 100%);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(232, 180, 162, 0.14);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .luxury-card:hover {
+      border-color: rgba(232, 180, 162, 0.45);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 30px rgba(232, 180, 162, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .rosegold-gradient {
+      background: linear-gradient(135deg, #ffffff 0%, #f7d6cd 40%, #e8b4a2 70%, #b86e5a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .platinum-gradient {
+      background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 60%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Trajectory HUD Radar Line */
+    .radar-indicator {
+      background: linear-gradient(90deg, rgba(232,180,162,0.8), transparent);
+    }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #040711; }
+    ::-webkit-scrollbar-thumb { background: rgba(232, 180, 162, 0.25); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #e8b4a2; }
+  </style>
 </head>
+<body class="selection:bg-[#e8b4a2] selection:text-black">
 
-<body class="index-page">
+  <div class="film-grain"></div>
 
-  <header id="header" class="header dark-background d-flex flex-column">
-    <i class="header-toggle d-xl-none bi bi-list"></i>
+  <!-- 3D WebGL Multi-Planet & Interplanetary Spacecraft Canvas -->
+  <canvas id="webgl-canvas"></canvas>
 
-    <div class="profile-img">
-      <img src="assets/img/anas-profile.jpg" alt="" class="img-fluid rounded-circle">
+  <!-- Flight Telemetry HUD -->
+  <div class="fixed top-24 right-8 z-40 hidden xl:flex flex-col items-end gap-1 font-mono text-[9px] uppercase tracking-[0.25em] text-[#e8b4a2]/70 pointer-events-none">
+    <div class="flex items-center gap-2">
+      <span class="w-1.5 h-1.5 rounded-full bg-[#e8b4a2] animate-ping"></span>
+      <span id="flight-status">INTERCEPT VECTOR // AUREON</span>
     </div>
+    <div class="text-slate-500 font-light" id="ship-coords">TRAJECTORY: 0.00 AU // VELOCITY: 0.88 c</div>
+    <div class="w-32 h-px radar-indicator mt-1"></div>
+  </div>
 
-    <a href="index.html" class="logo d-flex align-items-center justify-content-center">
-      <!-- Uncomment the line below if you also wish to use an image logo -->
-      <!-- <img src="assets/img/logo.png" alt=""> -->
-      <h1 class="sitename">Mohd Anas Ansari</h1>
-    </a>
+  <!-- Fixed Navigation Bar -->
+  <header class="fixed top-0 left-0 right-0 z-50 px-8 py-5 backdrop-blur-xl border-b border-white/[0.05] bg-[#040711]/80">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      
+      <a href="#hero" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 rounded-sm border border-[#e8b4a2]/40 flex items-center justify-center font-display font-bold text-sm tracking-wider text-[#e8b4a2] group-hover:bg-[#e8b4a2]/10 transition-colors">
+          AA
+        </div>
+        <div class="flex flex-col">
+          <span class="font-display font-semibold text-sm tracking-wide text-white group-hover:text-[#e8b4a2] transition-colors">Mohd Anas Ansari</span>
+          <span class="font-mono text-[9px] tracking-widest text-slate-400 uppercase">Agentic AI & Full-Stack</span>
+        </div>
+      </a>
 
-    <div class="social-links text-center">
-      <a href="https://www.facebook.com/share/193p1DDHhJ/" class="facebook"><i class="bi bi-facebook"></i></a>
-      <a href="https://www.instagram.com/iamanasansari_?igsh=MXZueWs4Z3oxanBnMA==" class="instagram"><i
-          class="bi bi-instagram"></i></a>
-      <a href="https://github.com/iammohdanas" class="google-plus"><i class="bi bi-github"></i></a>
-      <a href="https://www.linkedin.com/in/iamanasansari/" class="linkedin"><i class="bi bi-linkedin"></i></a>
-      <a href="#" class="twitter"><i class="bi bi-caret-up"></i></a>
+      <!-- Desktop Links -->
+      <nav class="hidden lg:flex items-center gap-8 font-sans font-medium text-xs tracking-wider uppercase text-slate-300">
+        <a href="#about" class="hover:text-[#e8b4a2] transition-colors">About</a>
+        <a href="#skills" class="hover:text-[#e8b4a2] transition-colors">Skills</a>
+        <a href="#experience" class="hover:text-[#e8b4a2] transition-colors">Experience</a>
+        <a href="#portfolio" class="hover:text-[#e8b4a2] transition-colors">Projects</a>
+        <a href="#services" class="hover:text-[#e8b4a2] transition-colors">Expertise</a>
+        <a href="#achievements" class="hover:text-[#e8b4a2] transition-colors">Milestones</a>
+        <a href="#contact" class="hover:text-[#e8b4a2] transition-colors">Contact</a>
+      </nav>
+
+      <!-- Action Links -->
+      <div class="flex items-center gap-4">
+        <a href="https://github.com/iammohdanas" target="_blank" class="text-slate-400 hover:text-[#e8b4a2] transition-colors" title="GitHub">
+          <i data-lucide="github" class="w-4 h-4"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/iamanasansari/" target="_blank" class="text-slate-400 hover:text-[#e8b4a2] transition-colors" title="LinkedIn">
+          <i data-lucide="linkedin" class="w-4 h-4"></i>
+        </a>
+        <a href="#contact" class="hidden sm:inline-flex px-5 py-2 rounded-sm border border-[#e8b4a2]/50 bg-[#e8b4a2]/10 hover:bg-[#e8b4a2] hover:text-black font-sans text-xs tracking-wider uppercase text-[#e8b4a2] font-semibold transition-all duration-300">
+          Get in Touch
+        </a>
+      </div>
+
     </div>
-
-    <nav id="navmenu" class="navmenu">
-      <ul>
-        <li><a href="#hero" class="active"><i class="bi bi-house navicon"></i>Home</a></li>
-        <li><a href="#about"><i class="bi bi-person navicon"></i> About</a></li>
-        <li><a href="#resume"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
-        <li><a href="#portfolio"><i class="bi bi-images navicon"></i> Projects</a></li>
-        <li><a href="#services"><i class="bi bi-hdd-stack navicon"></i> Expertise</a></li>
-        <!-- <li class="dropdown"><a href="#"><i class="bi bi-menu-button navicon"></i> <span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-          <ul>
-            <li><a href="#">Dropdown 1</a></li>
-            <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-              <ul>
-                <li><a href="#">Deep Dropdown 1</a></li>
-                <li><a href="#">Deep Dropdown 2</a></li>
-                <li><a href="#">Deep Dropdown 3</a></li>
-                <li><a href="#">Deep Dropdown 4</a></li>
-                <li><a href="#">Deep Dropdown 5</a></li>
-              </ul>
-            </li>
-            <li><a href="#">Dropdown 2</a></li>
-            <li><a href="#">Dropdown 3</a></li>
-            <li><a href="#">Dropdown 4</a></li>
-          </ul>
-        </li> -->
-        <li><a href="#contact"><i class="bi bi-envelope navicon"></i> Contact</a></li>
-      </ul>
-    </nav>
-
   </header>
 
-  <main class="main">
+  <main class="relative z-10">
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero section dark-background">
+    <!-- HERO SECTION -->
+    <section id="hero" data-destination="AUREON (SYSTEM CORE)" data-trajectory="TRAJECTORY: 0.00 AU // READY" class="min-h-screen flex flex-col justify-center items-center px-6 pt-32 pb-20 text-center relative">
+      <div class="max-w-4xl mx-auto">
+        
+        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-[#e8b4a2]/30 bg-[#e8b4a2]/5 text-[#e8b4a2] text-xs font-mono mb-8 tracking-wider">
+          <span class="w-2 h-2 rounded-full bg-[#e8b4a2] animate-pulse"></span>
+          Software Engineer & Agentic AI Specialist
+        </div>
 
-      <img src="assets/img/background-laptop.jpg" alt="" data-aos="fade-in" class="">
+        <h1 class="font-display text-5xl sm:text-7xl md:text-8xl font-bold tracking-tight leading-none mb-6">
+          <span class="platinum-gradient">Mohd Anas</span> <br>
+          <span class="rosegold-gradient">Ansari</span>
+        </h1>
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <h2>Mohd Anas Ansari</h2>
-        <p>I'm <span class="typed"
-            data-typed-items="Full-Stack Developer, Agentic GenAI Engineer, Fintech Architect">Full-Stack
-            Developer</span>
-      </div>
+        <div class="h-8 mb-8 flex items-center justify-center font-mono text-sm sm:text-base text-slate-300 tracking-wide">
+          <span class="text-[#e8b4a2] mr-2">&gt;</span> <span id="hero-typing"></span>
+        </div>
 
-    </section><!-- /Hero Section -->
+        <p class="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed mb-12 font-sans font-light">
+          Translating complex enterprise requirements into scalable backend architectures, intelligent multi-agent orchestration systems, and high-throughput fintech platforms.
+        </p>
 
-    <!-- About Section -->
-    <section id="about" class="about section">
-      <div class="container section-title" data-aos="fade-up">
-        <h2>About</h2>
-        <p>Full-Stack Developer and Agentic AI Engineer experienced in building production-grade platforms across
-          fintech and renewable-energy domains. Strong in Python, Django, FastAPI, ReactJS, asynchronous systems,
-          distributed workflows, RAG, LangChain, and LangGraph. Focused on translating complex business requirements
-          into scalable backend systems, intelligent agents, and reliable user-facing applications.</p>
-      </div>
+        <div class="flex flex-wrap items-center justify-center gap-5">
+          <a href="#portfolio" class="px-8 py-3.5 rounded-sm font-sans font-bold text-xs uppercase tracking-wider text-black bg-[#e8b4a2] hover:bg-[#f7d6cd] transition-all shadow-[0_0_30px_rgba(232,180,162,0.3)]">
+            View Projects
+          </a>
+          <a href="#experience" class="px-8 py-3.5 rounded-sm font-sans font-bold text-xs uppercase tracking-wider text-white luxury-card hover:bg-white/10 transition-all">
+            Experience History
+          </a>
+        </div>
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="row gy-4 justify-content-center">
-          <div class="col-lg-4">
-            <img src="assets/img/anas-profile1.jpeg" class="img-fluid" alt="Mohd Anas Ansari">
+        <!-- Metrics Row -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-20 max-w-4xl mx-auto">
+          <div class="luxury-card p-6 text-center">
+            <div class="font-display text-3xl sm:text-4xl font-bold text-white mb-1 counter" data-target="4">0</div>
+            <div class="font-sans text-xs tracking-wider uppercase text-slate-400">Years Experience</div>
           </div>
-          <div class="col-lg-8 content">
-            <h2>Full-Stack Developer · Agentic AI Engineer</h2>
-            <p class="fst-italic py-3">
-              Building scalable software platforms, automation workflows, and agentic AI systems for real-world
-              business operations.
-            </p>
-            <div class="row">
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span><a
-                    href="https://iamanasansari.space/" target="_blank">iamanasansari.space</a></span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>+91-7017528755</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Location:</strong> <span>India</span></li>
-                </ul>
-              </div>
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>B.Tech (CSE)</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>aaanas372@gmail.com</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Availability:</strong> <span>Open to opportunities</span></li>
-                </ul>
+          <div class="luxury-card p-6 text-center">
+            <div class="font-display text-3xl sm:text-4xl font-bold text-[#e8b4a2] mb-1 counter" data-target="2">0</div>
+            <div class="font-sans text-xs tracking-wider uppercase text-slate-400">Production Platforms</div>
+          </div>
+          <div class="luxury-card p-6 text-center">
+            <div class="font-display text-3xl sm:text-4xl font-bold text-white mb-1">₹<span class="counter" data-target="50">0</span>Cr+</div>
+            <div class="font-sans text-xs tracking-wider uppercase text-slate-400">Daily Fintech Volume</div>
+          </div>
+          <div class="luxury-card p-6 text-center">
+            <div class="font-display text-3xl sm:text-4xl font-bold text-[#e8b4a2] mb-1 counter" data-target="5">0</div>
+            <div class="font-sans text-xs tracking-wider uppercase text-slate-400">AI & Tech Domains</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" data-destination="VESPERA PRIME" data-trajectory="TRAJECTORY: 1.42 AU // ORBIT INSERTION" class="py-28 px-6 border-t border-white/[0.05]">
+      <div class="max-w-6xl mx-auto">
+        <div class="mb-14">
+          <span class="font-mono text-xs text-[#e8b4a2] uppercase tracking-widest block mb-2">Background</span>
+          <h2 class="font-display text-3xl sm:text-5xl font-bold text-white">About Me</h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div class="lg:col-span-5">
+            <div class="relative rounded-sm overflow-hidden luxury-card p-2 group">
+              <div class="aspect-[4/5] rounded-sm overflow-hidden bg-slate-950 relative">
+                <img src="assets/img/anas-profile1.jpeg" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80'" alt="Mohd Anas Ansari" class="w-full h-full object-cover grayscale contrast-115 group-hover:grayscale-0 transition-all duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+                <div class="absolute bottom-6 left-6 right-6">
+                  <div class="font-display font-bold text-lg text-white">Mohd Anas Ansari</div>
+                  <div class="font-mono text-xs text-[#e8b4a2]">Full-Stack & Agentic AI Engineer</div>
+                </div>
               </div>
             </div>
-            <p class="py-3">
+          </div>
+
+          <div class="lg:col-span-7 space-y-6">
+            <h3 class="font-display text-2xl sm:text-3xl font-semibold text-white leading-snug">
+              Full-Stack Developer & Agentic AI Engineer
+            </h3>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed font-light">
+              Full-Stack Developer and Agentic AI Engineer experienced in building production-grade platforms across fintech and renewable-energy domains. Strong in Python, Django, FastAPI, ReactJS, asynchronous systems, distributed workflows, RAG, LangChain, and LangGraph. Focused on translating complex business requirements into scalable backend systems, intelligent agents, and reliable user-facing applications.
+            </p>
+            <div class="p-4 rounded-sm border border-[#e8b4a2]/25 bg-[#e8b4a2]/5 font-mono text-xs text-[#e8b4a2] leading-relaxed">
               Software Development Engineer (Full Stack + Agentic AI) @ Rays Power Infra || Ex CSC e-Governance & Paytm
-            </p>
-          </div>
-        </div>
-      </div>
-    </section><!-- /About Section -->
+            </div>
 
-    <!-- Stats Section -->
-    <section id="stats" class="stats section">
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="row gy-4">
-          <div class="col-lg-3 col-md-6">
-            <div class="stats-item">
-              <i class="bi bi-calendar-check"></i>
-              <span data-purecounter-start="0" data-purecounter-end="4" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Years Experience</strong></p>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="stats-item">
-              <i class="bi bi-cpu"></i>
-              <span data-purecounter-start="0" data-purecounter-end="2" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Production Platforms</strong></p>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="stats-item">
-              <i class="bi bi-lightning-charge"></i>
-              <span data-purecounter-start="0" data-purecounter-end="50" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Cr+ Daily Fintech Transactions</strong></p>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="stats-item">
-              <i class="bi bi-robot"></i>
-              <span data-purecounter-start="0" data-purecounter-end="5" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>AI / Automation Domains</strong></p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4 border-t border-white/[0.08] font-mono text-xs">
+              <div class="luxury-card p-4 rounded-sm">
+                <span class="text-slate-500 uppercase tracking-widest text-[10px] block mb-1">Portfolio</span>
+                <a href="https://iamanasansari.space/" target="_blank" class="text-white hover:text-[#e8b4a2] transition-colors">iamanasansari.space</a>
+              </div>
+              <div class="luxury-card p-4 rounded-sm">
+                <span class="text-slate-500 uppercase tracking-widest text-[10px] block mb-1">Phone</span>
+                <span class="text-white">+91-7017528755</span>
+              </div>
+              <div class="luxury-card p-4 rounded-sm">
+                <span class="text-slate-500 uppercase tracking-widest text-[10px] block mb-1">Email</span>
+                <a href="mailto:aaanas372@gmail.com" class="text-white hover:text-[#e8b4a2] transition-colors">aaanas372@gmail.com</a>
+              </div>
+              <div class="luxury-card p-4 rounded-sm">
+                <span class="text-slate-500 uppercase tracking-widest text-[10px] block mb-1">Degree</span>
+                <span class="text-white">B.Tech (CSE) - Sharda University</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </section><!-- /Stats Section -->
+    </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills section light-background">
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Technical Skills</h2>
-      </div>
+    <!-- TECHNICAL SKILLS SECTION -->
+    <section id="skills" data-destination="KAELIS SYNAPSE" data-trajectory="TRAJECTORY: 3.80 AU // ACCELERATION" class="py-28 px-6 border-t border-white/[0.05] bg-black/40">
+      <div class="max-w-6xl mx-auto">
+        <div class="mb-14">
+          <span class="font-mono text-xs text-[#e8b4a2] uppercase tracking-widest block mb-2">Capabilities</span>
+          <h2 class="font-display text-3xl sm:text-5xl font-bold text-white">Technical Skills</h2>
+        </div>
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="row skills-content skills-animation">
-          <div class="col-lg-6">
-            <div class="progress">
-              <span class="skill"><span>Python</span> <i class="val">95%</i></span>
-              <div class="progress-bar-wrap"><div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div></div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-4">
+            <div class="luxury-card p-5 rounded-sm">
+              <div class="flex justify-between font-mono text-xs text-white mb-2">
+                <span>Python</span> <span class="text-[#e8b4a2]">95%</span>
+              </div>
+              <div class="w-full h-1 bg-white/10 rounded-full overflow-hidden">
+                <div class="h-full bg-[#e8b4a2]" style="width: 95%"></div>
+              </div>
             </div>
-            <div class="progress">
-              <span class="skill"><span>Django / DRF</span> <i class="val">92%</i></span>
-              <div class="progress-bar-wrap"><div class="progress-bar" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100"></div></div>
+
+            <div class="luxury-card p-5 rounded-sm">
+              <div class="flex justify-between font-mono text-xs text-white mb-2">
+                <span>Django / DRF</span> <span class="text-[#e8b4a2]">92%</span>
+              </div>
+              <div class="w-full h-1 bg-white/10 rounded-full overflow-hidden">
+                <div class="h-full bg-[#e8b4a2]" style="width: 92%"></div>
+              </div>
             </div>
-            <div class="progress">
-              <span class="skill"><span>FastAPI / AsyncIO</span> <i class="val">85%</i></span>
-              <div class="progress-bar-wrap"><div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div></div>
+
+            <div class="luxury-card p-5 rounded-sm">
+              <div class="flex justify-between font-mono text-xs text-white mb-2">
+                <span>FastAPI / AsyncIO</span> <span class="text-[#e8b4a2]">85%</span>
+              </div>
+              <div class="w-full h-1 bg-white/10 rounded-full overflow-hidden">
+                <div class="h-full bg-[#e8b4a2]" style="width: 85%"></div>
+              </div>
             </div>
-            <div class="progress">
-              <span class="skill"><span>ReactJS / JavaScript</span> <i class="val">88%</i></span>
-              <div class="progress-bar-wrap"><div class="progress-bar" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100"></div></div>
+
+            <div class="luxury-card p-5 rounded-sm">
+              <div class="flex justify-between font-mono text-xs text-white mb-2">
+                <span>ReactJS / JavaScript</span> <span class="text-[#e8b4a2]">88%</span>
+              </div>
+              <div class="w-full h-1 bg-white/10 rounded-full overflow-hidden">
+                <div class="h-full bg-[#e8b4a2]" style="width: 88%"></div>
+              </div>
             </div>
           </div>
 
-          <div class="col-lg-6">
-            <div class="progress">
-              <span class="skill"><span>LangChain / LangGraph / RAG</span> <i class="val">88%</i></span>
-              <div class="progress-bar-wrap"><div class="progress-bar" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100"></div></div>
+          <div class="space-y-4">
+            <div class="luxury-card p-5 rounded-sm">
+              <div class="flex justify-between font-mono text-xs text-white mb-2">
+                <span>LangChain / LangGraph / RAG</span> <span class="text-[#e8b4a2]">88%</span>
+              </div>
+              <div class="w-full h-1 bg-white/10 rounded-full overflow-hidden">
+                <div class="h-full bg-[#e8b4a2]" style="width: 88%"></div>
+              </div>
             </div>
-            <div class="progress">
-              <span class="skill"><span>Celery / Redis / Kafka</span> <i class="val">88%</i></span>
-              <div class="progress-bar-wrap"><div class="progress-bar" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100"></div></div>
+
+            <div class="luxury-card p-5 rounded-sm">
+              <div class="flex justify-between font-mono text-xs text-white mb-2">
+                <span>Celery / Redis / Kafka</span> <span class="text-[#e8b4a2]">88%</span>
+              </div>
+              <div class="w-full h-1 bg-white/10 rounded-full overflow-hidden">
+                <div class="h-full bg-[#e8b4a2]" style="width: 88%"></div>
+              </div>
             </div>
-            <div class="progress">
-              <span class="skill"><span>PostgreSQL / MySQL</span> <i class="val">90%</i></span>
-              <div class="progress-bar-wrap"><div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div></div>
+
+            <div class="luxury-card p-5 rounded-sm">
+              <div class="flex justify-between font-mono text-xs text-white mb-2">
+                <span>PostgreSQL / MySQL</span> <span class="text-[#e8b4a2]">90%</span>
+              </div>
+              <div class="w-full h-1 bg-white/10 rounded-full overflow-hidden">
+                <div class="h-full bg-[#e8b4a2]" style="width: 90%"></div>
+              </div>
             </div>
-            <div class="progress">
-              <span class="skill"><span>AWS / Docker</span> <i class="val">82%</i></span>
-              <div class="progress-bar-wrap"><div class="progress-bar" role="progressbar" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100"></div></div>
+
+            <div class="luxury-card p-5 rounded-sm">
+              <div class="flex justify-between font-mono text-xs text-white mb-2">
+                <span>AWS / Docker</span> <span class="text-[#e8b4a2]">82%</span>
+              </div>
+              <div class="w-full h-1 bg-white/10 rounded-full overflow-hidden">
+                <div class="h-full bg-[#e8b4a2]" style="width: 82%"></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </section><!-- /Skills Section -->
+    </section>
 
-    <!-- Resume Section -->
-    <section id="resume" class="resume section">
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Resume</h2>
-        <p>Full-Stack Developer and Agentic AI Engineer with production experience in fintech platforms,
-          enterprise automation, renewable-energy optimization, and intelligent workflow systems.</p>
-      </div>
+    <!-- EXPERIENCE SECTION -->
+    <section id="experience" data-destination="CHRONOS APEX" data-trajectory="TRAJECTORY: 6.90 AU // ENTERING RING PLANE" class="py-28 px-6 border-t border-white/[0.05]">
+      <div class="max-w-6xl mx-auto">
+        <div class="mb-14">
+          <span class="font-mono text-xs text-[#e8b4a2] uppercase tracking-widest block mb-2">Work History</span>
+          <h2 class="font-display text-3xl sm:text-5xl font-bold text-white">Experience & Education</h2>
+        </div>
 
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-            <h3 class="resume-title">Professional Experience</h3>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          <div class="lg:col-span-8 space-y-6">
+            <h3 class="font-display text-xl font-bold text-white mb-4">Professional Roles</h3>
 
-            <div class="resume-item">
-              <h4>Software Development Engineer (Full Stack + Agentic AI)</h4>
-              <h5>May 2026 - Present</h5>
-              <p><em>Rays Power Infra Pvt. Ltd.</em></p>
-              <ul>
+            <div class="luxury-card p-7 rounded-sm border-l-2 border-l-[#e8b4a2]">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                <h4 class="font-display font-bold text-lg text-white">Software Development Engineer (Full Stack + Agentic AI)</h4>
+                <span class="font-mono text-xs text-[#e8b4a2]">May 2026 - Present</span>
+              </div>
+              <div class="font-sans text-xs text-slate-400 mb-4">Rays Power Infra Pvt. Ltd.</div>
+              <ul class="space-y-2 text-xs sm:text-sm text-slate-300 list-disc list-inside font-light leading-relaxed">
                 <li>Architected and developed an enterprise-grade Hybrid Energy Optimization Platform in Python for techno-economic analysis of utility-scale Solar, Wind, BESS, and Grid assets.</li>
                 <li>Designed large-scale energy dispatch simulations, optimization algorithms, and heuristic strategies to minimize renewable curtailment and optimize battery utilization.</li>
                 <li>Built profitability analysis and optimization workflows that identified opportunities to improve project profitability by approximately ₹30 crore per project.</li>
               </ul>
             </div>
 
-            <div class="resume-item">
-              <h4>Software Development Engineer (Full Stack + Agentic AI)</h4>
-              <h5>Feb 2024 - Apr 2026</h5>
-              <p><em>CSC e-Governance, Ministry of Electronics & IT, Govt. of India</em></p>
-              <ul>
+            <div class="luxury-card p-7 rounded-sm border-l-2 border-l-slate-400">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                <h4 class="font-display font-bold text-lg text-white">Software Development Engineer (Full Stack + Agentic AI)</h4>
+                <span class="font-mono text-xs text-slate-400">Feb 2024 - Apr 2026</span>
+              </div>
+              <div class="font-sans text-xs text-slate-400 mb-4">CSC e-Governance, Ministry of Electronics & IT, Govt. of India</div>
+              <ul class="space-y-2 text-xs sm:text-sm text-slate-300 list-disc list-inside font-light leading-relaxed">
                 <li>Built DigiPay from scratch, supporting 5+ lakh CSCs and processing ₹50+ crore/day with 90%+ transaction success.</li>
                 <li>Built an Agentic GenAI support assistant using LangChain, RAG, and LangGraph to automate transaction lookup, failure RCA, support tickets, refund triggers, and device diagnostics for AEPS/Micro-ATM.</li>
                 <li>Developed the fintech web application using Python-Django, desktop application as a PWA, and mobile application using React Native WebView.</li>
@@ -277,16 +413,14 @@
                 <li>Architected DigiPay's frontend using ReactJS, Bootstrap 5, HTML5, CSS3, and JavaScript.</li>
               </ul>
             </div>
-          </div>
 
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <h3 class="resume-title">Professional Experience</h3>
-
-            <div class="resume-item">
-              <h4>Software Engineer Trainee (Backend)</h4>
-              <h5>Mar 2023 - Jan 2024</h5>
-              <p><em>Paytm (One97 Communications Ltd.)</em></p>
-              <ul>
+            <div class="luxury-card p-7 rounded-sm border-l-2 border-l-slate-600">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                <h4 class="font-display font-bold text-lg text-white">Software Engineer (Backend)</h4>
+                <span class="font-mono text-xs text-slate-400">Mar 2023 - Jan 2024</span>
+              </div>
+              <div class="font-sans text-xs text-slate-400 mb-4">Paytm (One97 Communications Ltd.)</div>
+              <ul class="space-y-2 text-xs sm:text-sm text-slate-300 list-disc list-inside font-light leading-relaxed">
                 <li>Developed URL-based advertising display banners for merchant and service promotion.</li>
                 <li>Developed real-time bank server downtime notifications to improve transaction transparency and user experience.</li>
                 <li>Implemented amount and transaction limits in Paytm UPI Lite with validation and safeguard logic.</li>
@@ -294,412 +428,699 @@
               </ul>
             </div>
 
-            <div class="resume-item">
-              <h4>Software Engineer Intern</h4>
-              <h5>Sep 2022 - Nov 2022</h5>
-              <p><em>Mediology Software Pvt. Ltd.</em></p>
-              <ul>
+            <div class="luxury-card p-7 rounded-sm border-l-2 border-l-slate-700">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                <h4 class="font-display font-bold text-lg text-white">Software Engineer Intern</h4>
+                <span class="font-mono text-xs text-slate-400">Sep 2022 - Nov 2022</span>
+              </div>
+              <div class="font-sans text-xs text-slate-400 mb-4">Mediology Software Pvt. Ltd.</div>
+              <ul class="space-y-2 text-xs sm:text-sm text-slate-300 list-disc list-inside font-light leading-relaxed">
                 <li>Implemented a dynamic real-time Pie Chart and API-controlled Advertising Display Banner in the live Sortd project.</li>
-                <li>Implemented web stories and Contact Us functionality and refactored the plugin to WordPress VIP standards for improved performance and responsiveness.</li>
-              </ul>
-            </div>
-
-            <h3 class="resume-title">Education</h3>
-            <div class="resume-item">
-              <h4>B.Tech in Computer Science and Engineering</h4>
-              <h5>2019 - 2023</h5>
-              <p><em>Sharda University, Greater Noida, Uttar Pradesh</em></p>
-            </div>
-
-            <h3 class="resume-title">Certifications & Achievements</h3>
-            <div class="resume-item">
-              <ul>
-                <li>Built an AEPS transaction application optimized for speed, reliability, and scale.</li>
-                <li>Published an IEEE research paper on technological explorations of voice assistants.</li>
+                <li>Implemented web stories and Contact Us functionality and refactored the plugin to WordPress VIP standards.</li>
               </ul>
             </div>
           </div>
-        </div>
-      </div>
-    </section><!-- /Resume Section -->
 
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="portfolio section light-background">
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Projects</h2>
-        <p>Selected production and engineering projects focused on Agentic AI, fintech integrations, backend systems, and enterprise automation.</p>
-      </div>
+          <div class="lg:col-span-4 space-y-6">
+            <h3 class="font-display text-xl font-bold text-white mb-4">Education & Honors</h3>
 
-      <div class="container">
-        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
-          <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-            <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-ai">Agentic AI</li>
-            <li data-filter=".filter-app">Full Stack</li>
-            <li data-filter=".filter-backend">Backend</li>
-          </ul>
-
-          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-ai filter-app">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/app-2.jpg" class="img-fluid" alt="Hybrid Energy Optimization Platform">
-                <div class="portfolio-info">
-                  <h4>Hybrid Energy Optimization Platform</h4>
-                  <p>Python-based Solar, Wind, BESS and Grid dispatch simulation, optimization, and profitability analysis.</p>
-                  <a href="assets/img/portfolio/app-2.jpg" title="Hybrid Energy Optimization Platform" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                </div>
-              </div>
+            <div class="luxury-card p-6 rounded-sm">
+              <span class="font-mono text-xs text-[#e8b4a2] block mb-1">2019 - 2023</span>
+              <h4 class="font-display font-bold text-base text-white">B.Tech in Computer Science & Engineering</h4>
+              <p class="text-xs text-slate-400 mt-2 font-sans">Sharda University, Greater Noida, UP</p>
             </div>
 
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-ai filter-app">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/app-1.jpg" class="img-fluid" alt="DigiPay Agentic AI">
-                <div class="portfolio-info">
-                  <h4>DigiPay Agentic AI Support</h4>
-                  <p>LangChain + RAG + LangGraph support assistant for transaction RCA, refunds, tickets, and device diagnostics.</p>
-                  <a href="assets/img/portfolio/app-1.jpg" title="DigiPay Agentic AI Support" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="https://digipayweb.csccloud.in/" title="More Details" class="details-link" target="_blank"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
+            <div class="luxury-card p-6 rounded-sm space-y-3">
+              <h4 class="font-sans font-bold text-xs uppercase tracking-wider text-white">IEEE Publication</h4>
+              <p class="text-xs text-slate-300 font-light leading-relaxed">
+                Published an IEEE research paper on technological explorations of conversational voice assistants.
+              </p>
             </div>
 
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-backend">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/books-1.jpg" class="img-fluid" alt="Razorpay Webhook Integration">
-                <div class="portfolio-info">
-                  <h4>Razorpay Webhook Integration</h4>
-                  <p>Production-ready Django webhook processor with signature verification, idempotency, Celery, and Redis.</p>
-                  <a href="assets/img/portfolio/books-1.jpg" title="Razorpay Webhook Integration" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app filter-backend">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/himalaya.jpeg" class="img-fluid" alt="Biometric Authentication RD Services">
-                <div class="portfolio-info">
-                  <h4>Biometric Authentication RD Services</h4>
-                  <p>Reusable React component for Mantra, Morpho, Startek, SecuGen and Iris RD Services with local device detection and XML integration.</p>
-                  <a href="assets/img/portfolio/himalaya.jpeg" title="Biometric Authentication RD Services" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="https://github.com/iammohdanas" title="GitHub" class="details-link" target="_blank"><i class="bi bi-github"></i></a>
-                </div>
-              </div>
+            <div class="luxury-card p-6 rounded-sm space-y-3">
+              <h4 class="font-sans font-bold text-xs uppercase tracking-wider text-white">High-Throughput Scale</h4>
+              <p class="text-xs text-slate-300 font-light leading-relaxed">
+                Architected AEPS transaction gateway handling 50Cr+ daily volume with 90%+ success across 5+ lakh CSC points.
+              </p>
             </div>
           </div>
         </div>
-      </div>
-    </section><!-- /Portfolio Section -->
-
-    <!-- Services Section -->
-    <section id="services" class="services section">
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Core Expertise</h2>
-      </div>
-
-      <div class="container">
-        <div class="row gy-4">
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up">
-            <div class="icon flex-shrink-0"><i class="bi bi-code-slash"></i></div>
-            <div>
-              <h4 class="title">Backend Engineering</h4>
-              <p class="description">Python, Django/DRF, Flask, FastAPI, AsyncIO, Django ORM, REST APIs, PostgreSQL, MySQL.</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up">
-            <div class="icon flex-shrink-0"><i class="bi bi-window"></i></div>
-            <div>
-              <h4 class="title">Full-Stack Development</h4>
-              <p class="description">ReactJS, JavaScript ES6+, HTML5, CSS3, Bootstrap 5, PWA, React Native WebView.</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up">
-            <div class="icon flex-shrink-0"><i class="bi bi-robot"></i></div>
-            <div>
-              <h4 class="title">Agentic AI</h4>
-              <p class="description">LangChain, LangGraph, ReAct, RAG, vector databases, prompt engineering, workflow orchestration.</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up">
-            <div class="icon flex-shrink-0"><i class="bi bi-diagram-3"></i></div>
-            <div>
-              <h4 class="title">Distributed Systems</h4>
-              <p class="description">Celery, Redis, Kafka, asynchronous task processing, queues, retries, event-driven workflows, Flower.</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up">
-            <div class="icon flex-shrink-0"><i class="bi bi-cloud"></i></div>
-            <div>
-              <h4 class="title">Cloud & DevOps</h4>
-              <p class="description">AWS EC2, S3, RDS, Lightsail, Lambda, API Gateway, Docker, Jenkins, Git, Postman.</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up">
-            <div class="icon flex-shrink-0"><i class="bi bi-bar-chart"></i></div>
-            <div>
-              <h4 class="title">Data & Engineering</h4>
-              <p class="description">Pandas, NumPy, ML workflows, Locust, API testing, system optimization, and techno-economic modeling.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section><!-- /Services Section -->
-
-    <!-- Testimonials Section -->
-    <!-- <section id="testimonials" class="testimonials section light-background">
-
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Testimonials</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-      </div>
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="swiper init-swiper">
-          <script type="application/json" class="swiper-config">
-            {
-              "loop": true,
-              "speed": 600,
-              "autoplay": {
-                "delay": 5000
-              },
-              "slidesPerView": "auto",
-              "pagination": {
-                "el": ".swiper-pagination",
-                "type": "bullets",
-                "clickable": true
-              },
-              "breakpoints": {
-                "320": {
-                  "slidesPerView": 1,
-                  "spaceBetween": 40
-                },
-                "1200": {
-                  "slidesPerView": 3,
-                  "spaceBetween": 1
-                }
-              }
-            }
-          </script>
-          <div class="swiper-wrapper">
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.</span>
-                  <i class="bi bi-quote quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                <h3>Saul Goodman</h3>
-                <h4>Ceo &amp; Founder</h4>
-              </div>
-            </div>
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.</span>
-                  <i class="bi bi-quote quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-                <h3>Sara Wilsson</h3>
-                <h4>Designer</h4>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.</span>
-                  <i class="bi bi-quote quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-                <h3>Jena Karlis</h3>
-                <h4>Store Owner</h4>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.</span>
-                  <i class="bi bi-quote quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-                <h3>Matt Brandon</h3>
-                <h4>Freelancer</h4>
-              </div>
-            </div><div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.</span>
-                  <i class="bi bi-quote quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-                <h3>John Larson</h3>
-                <h4>Entrepreneur</h4>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-
-      </div>
-
-    </section>/Testimonials Section -->
-
-    <!-- Contact Section -->
-
-    <section id="achievements" class="section">
-      <div class="container section-title">
-        <h2>Achievements</h2>
-        <ul>
-          <li>Architected a hybrid renewable-energy optimization platform with profitability analysis targeting approximately ₹30 crore improvement per project.</li>
-          <li>Built DigiPay for 5+ lakh CSCs with ₹50+ crore/day transaction volume and 90%+ success.</li>
-          <li>Optimized AEPS biometric authentication by 80% and reduced transaction failures by 70%.</li>
-          <li>Published an IEEE research paper on technological explorations of voice assistants.</li>
-        </ul>
       </div>
     </section>
 
-    <section id="contact" class="contact section">
+    <!-- PROJECTS PORTFOLIO -->
+    <section id="portfolio" data-destination="NYX AZURE" data-trajectory="TRAJECTORY: 11.2 AU // DEEP SYSTEM APPROACH" class="py-28 px-6 border-t border-white/[0.05] bg-black/40">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+          <div>
+            <span class="font-mono text-xs text-[#e8b4a2] uppercase tracking-widest block mb-2">Showcase</span>
+            <h2 class="font-display text-3xl sm:text-5xl font-bold text-white">Featured Projects</h2>
+          </div>
 
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Contact</h2>
-        <p>Interested in Full-Stack, Backend, Agentic AI, or platform engineering opportunities? Let's connect.</p>
-      </div><!-- End Section Title -->
+          <div class="flex flex-wrap gap-2 font-mono text-xs p-1 luxury-card rounded-sm" id="project-filters">
+            <button onclick="filterSystem('all')" class="filter-tab px-4 py-1.5 rounded-sm bg-[#e8b4a2] text-black font-semibold">All</button>
+            <button onclick="filterSystem('ai')" class="filter-tab px-4 py-1.5 rounded-sm text-slate-400 hover:text-white">Agentic AI</button>
+            <button onclick="filterSystem('app')" class="filter-tab px-4 py-1.5 rounded-sm text-slate-400 hover:text-white">Full Stack</button>
+            <button onclick="filterSystem('backend')" class="filter-tab px-4 py-1.5 rounded-sm text-slate-400 hover:text-white">Backend</button>
+          </div>
+        </div>
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-12">
-
-            <div class="info-wrap">
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
-                <i class="bi bi-geo-alt flex-shrink-0"></i>
-                <div>
-                  <h3>Address</h3>
-                  <p>221, Mohalla Bhoorey Khan, Near Ghoonghat Banquet Hall, Pilibhit</p>
-                </div>
-              </div><!-- End Info Item -->
-
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
-                <i class="bi bi-telephone flex-shrink-0"></i>
-                <div>
-                  <h3>Call Us</h3>
-                  <p>+91 7017528755</p>
-                </div>
-              </div><!-- End Info Item -->
-
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
-                <i class="bi bi-envelope flex-shrink-0"></i>
-                <div>
-                  <h3>Email Us</h3>
-                  <p>aaanas372@gmail.com</p>
-                </div>
-              </div><!-- End Info Item -->
-
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14114.192589926276!2d79.8083136!3d28.6424305!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39a014a1a4f7fdfd%3A0x9f26360e0a77c302!2sPilibhit%2C%20Uttar%20Pradesh%2C%20India!5e0!3m2!1sen!2sin!4v1676961268712!5m2!1sen!2sin"
-                frameborder="0" style="border:0; width: 100%; height: 270px;" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="systems-grid">
+          <div class="sys-card ai app luxury-card rounded-sm overflow-hidden group">
+            <div class="h-52 bg-slate-950 overflow-hidden relative border-b border-white/[0.05]">
+              <img src="assets/img/portfolio/app-2.jpg" onerror="this.src='https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=800&q=80'" alt="Hybrid Energy Platform" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#040711] via-transparent to-transparent"></div>
+              <span class="absolute top-4 right-4 px-3 py-1 rounded-sm luxury-card font-mono text-[10px] text-[#e8b4a2] uppercase">Renewable Energy</span>
+            </div>
+            <div class="p-6 sm:p-8">
+              <h3 class="font-display text-xl font-bold text-white mb-2">Hybrid Energy Optimization Platform</h3>
+              <p class="text-xs sm:text-sm text-slate-400 mb-6 font-light leading-relaxed">
+                Python-based Solar, Wind, BESS and Grid dispatch simulation, optimization algorithms, and techno-economic profitability modeling.
+              </p>
+              <div class="flex items-center justify-between font-mono text-[11px] text-[#e8b4a2] pt-4 border-t border-white/[0.05]">
+                <span>Python · Optimization · BESS</span>
+                <span class="text-slate-500">Hybrid Energy Simulation</span>
+              </div>
             </div>
           </div>
 
-          <!-- <div class="col-lg-7">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
-              <div class="row gy-4">
-
-                <div class="col-md-6">
-                  <label for="name-field" class="pb-2">Your Name</label>
-                  <input type="text" name="name" id="name-field" class="form-control" required="">
-                </div>
-
-                <div class="col-md-6">
-                  <label for="email-field" class="pb-2">Your Email</label>
-                  <input type="email" class="form-control" name="email" id="email-field" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <label for="subject-field" class="pb-2">Subject</label>
-                  <input type="text" class="form-control" name="subject" id="subject-field" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <label for="message-field" class="pb-2">Message</label>
-                  <textarea class="form-control" name="message" rows="10" id="message-field" required=""></textarea>
-                </div>
-
-                <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                  <button type="submit">Send Message</button>
-                </div>
-
+          <div class="sys-card ai app luxury-card rounded-sm overflow-hidden group">
+            <div class="h-52 bg-slate-950 overflow-hidden relative border-b border-white/[0.05]">
+              <img src="assets/img/portfolio/app-1.jpg" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80'" alt="DigiPay Agentic AI" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#040711] via-transparent to-transparent"></div>
+              <span class="absolute top-4 right-4 px-3 py-1 rounded-sm luxury-card font-mono text-[10px] text-[#e8b4a2] uppercase">LangGraph / RAG</span>
+            </div>
+            <div class="p-6 sm:p-8">
+              <h3 class="font-display text-xl font-bold text-white mb-2">DigiPay Agentic AI Support</h3>
+              <p class="text-xs sm:text-sm text-slate-400 mb-6 font-light leading-relaxed">
+                LangChain + RAG + LangGraph support assistant for transaction RCA, ticket resolution, refund triggers, and AEPS device diagnostics.
+              </p>
+              <div class="flex items-center justify-between font-mono text-[11px] text-[#e8b4a2] pt-4 border-t border-white/[0.05]">
+                <span>Django · Celery · Redis · LangChain · LangGraph · RAG</span>
+                <span class="text-slate-500">Fintech App</span>
               </div>
-            </form>
-          </div> -->
-          <!-- End Contact Form -->
+            </div>
+          </div>
 
+          <div class="sys-card backend luxury-card rounded-sm overflow-hidden group">
+            <div class="h-52 bg-slate-950 overflow-hidden relative border-b border-white/[0.05]">
+              <img src="assets/img/portfolio/books-1.jpg" onerror="this.src='https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80'" alt="Razorpay Webhook Engine" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#040711] via-transparent to-transparent"></div>
+              <span class="absolute top-4 right-4 px-3 py-1 rounded-sm luxury-card font-mono text-[10px] text-[#e8b4a2] uppercase">Payment Architecture</span>
+            </div>
+            <div class="p-6 sm:p-8">
+              <h3 class="font-display text-xl font-bold text-white mb-2">Razorpay Webhook Integration</h3>
+              <p class="text-xs sm:text-sm text-slate-400 mb-6 font-light leading-relaxed">
+                Production-ready Django webhook processor featuring signature verification, idempotency locks, Redis caching, and Celery dispatch.
+              </p>
+              <div class="flex items-center justify-between font-mono text-[11px] text-[#e8b4a2] pt-4 border-t border-white/[0.05]">
+                <span>Django · Celery · Redis</span>
+                <span class="text-slate-500">Fintech Core</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="sys-card app backend luxury-card rounded-sm overflow-hidden group">
+            <div class="h-52 bg-slate-950 overflow-hidden relative border-b border-white/[0.05]">
+              <img src="assets/img/portfolio/himalaya.jpeg" onerror="this.src='https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80'" alt="Biometric Authentication Services" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#040711] via-transparent to-transparent"></div>
+              <span class="absolute top-4 right-4 px-3 py-1 rounded-sm luxury-card font-mono text-[10px] text-[#e8b4a2] uppercase">Hardware Drivers</span>
+            </div>
+            <div class="p-6 sm:p-8">
+              <h3 class="font-display text-xl font-bold text-white mb-2">Biometric RD Services React Suite</h3>
+              <p class="text-xs sm:text-sm text-slate-400 mb-6 font-light leading-relaxed">
+                Reusable component driver for Mantra, Morpho, Startek, SecuGen and Iris RD Services with local port integration and XML parsing.
+              </p>
+              <div class="flex items-center justify-between font-mono text-[11px] text-[#e8b4a2] pt-4 border-t border-white/[0.05]">
+                <span>Reactn JS</span>
+                <span class="text-slate-500">Open Framework</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CORE EXPERTISE SECTION -->
+    <section id="services" data-destination="SOLARIS HALO" data-trajectory="TRAJECTORY: 16.5 AU // STELLAR VECTOR" class="py-28 px-6 border-t border-white/[0.05]">
+      <div class="max-w-6xl mx-auto">
+        <div class="mb-14">
+          <span class="font-mono text-xs text-[#e8b4a2] uppercase tracking-widest block mb-2">Specializations</span>
+          <h2 class="font-display text-3xl sm:text-5xl font-bold text-white">Core Expertise</h2>
         </div>
 
-      </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="luxury-card p-7 rounded-sm">
+            <i data-lucide="terminal" class="w-6 h-6 text-[#e8b4a2] mb-4"></i>
+            <h3 class="font-display font-bold text-base text-white mb-2">Backend Engineering</h3>
+            <p class="text-xs text-slate-400 leading-relaxed font-mono">
+              Python, Django/DRF, Flask, FastAPI, AsyncIO, Django ORM, REST APIs, PostgreSQL, MySQL.
+            </p>
+          </div>
 
-    </section><!-- /Contact Section -->
+          <div class="luxury-card p-7 rounded-sm">
+            <i data-lucide="layers" class="w-6 h-6 text-[#e8b4a2] mb-4"></i>
+            <h3 class="font-display font-bold text-base text-white mb-2">Full-Stack Development</h3>
+            <p class="text-xs text-slate-400 leading-relaxed font-mono">
+              ReactJS, JavaScript ES6+, HTML5, CSS3, Bootstrap 5, PWA, React Native WebView.
+            </p>
+          </div>
+
+          <div class="luxury-card p-7 rounded-sm">
+            <i data-lucide="cpu" class="w-6 h-6 text-[#e8b4a2] mb-4"></i>
+            <h3 class="font-display font-bold text-base text-white mb-2">Agentic AI</h3>
+            <p class="text-xs text-slate-400 leading-relaxed font-mono">
+              LangChain, LangGraph, ReAct, RAG, vector databases, prompt engineering, workflow orchestration.
+            </p>
+          </div>
+
+          <div class="luxury-card p-7 rounded-sm">
+            <i data-lucide="git-merge" class="w-6 h-6 text-[#e8b4a2] mb-4"></i>
+            <h3 class="font-display font-bold text-base text-white mb-2">Distributed Systems</h3>
+            <p class="text-xs text-slate-400 leading-relaxed font-mono">
+              Celery, Redis, Kafka, asynchronous task processing, queues, retries, event-driven workflows, Flower.
+            </p>
+          </div>
+
+          <div class="luxury-card p-7 rounded-sm">
+            <i data-lucide="cloud" class="w-6 h-6 text-[#e8b4a2] mb-4"></i>
+            <h3 class="font-display font-bold text-base text-white mb-2">Cloud & DevOps</h3>
+            <p class="text-xs text-slate-400 leading-relaxed font-mono">
+              AWS EC2, S3, RDS, Lightsail, Lambda, API Gateway, Docker, Jenkins, Git, Postman.
+            </p>
+          </div>
+
+          <div class="luxury-card p-7 rounded-sm">
+            <i data-lucide="line-chart" class="w-6 h-6 text-[#e8b4a2] mb-4"></i>
+            <h3 class="font-display font-bold text-base text-white mb-2">Data & Optimization</h3>
+            <p class="text-xs text-slate-400 leading-relaxed font-mono">
+              Pandas, NumPy, ML workflows, Locust, API load testing, system optimization, techno-economic modeling.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACHIEVEMENTS SECTION -->
+    <section id="achievements" data-destination="SOLARIS HALO" data-trajectory="TRAJECTORY: 16.5 AU // MILESTONES SECURED" class="py-28 px-6 border-t border-white/[0.05] bg-black/40">
+      <div class="max-w-6xl mx-auto">
+        <div class="mb-14">
+          <span class="font-mono text-xs text-[#e8b4a2] uppercase tracking-widest block mb-2">Milestones</span>
+          <h2 class="font-display text-3xl sm:text-5xl font-bold text-white">Key Achievements</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="luxury-card p-8 rounded-sm border-l-2 border-[#e8b4a2] flex gap-5">
+            <span class="font-mono text-[#e8b4a2] font-bold text-xl">01</span>
+            <p class="text-slate-300 text-xs sm:text-sm font-light leading-relaxed">
+              Architected a hybrid renewable-energy optimization platform with profitability analysis targeting approximately <strong class="text-white font-medium">₹30 crore improvement per project</strong>.
+            </p>
+          </div>
+
+          <div class="luxury-card p-8 rounded-sm border-l-2 border-[#e8b4a2] flex gap-5">
+            <span class="font-mono text-[#e8b4a2] font-bold text-xl">02</span>
+            <p class="text-slate-300 text-xs sm:text-sm font-light leading-relaxed">
+              Built DigiPay for <strong class="text-white font-medium">5+ lakh CSCs</strong> with <strong class="text-white font-medium">₹50+ crore/day</strong> transaction volume and 90%+ success.
+            </p>
+          </div>
+
+          <div class="luxury-card p-8 rounded-sm border-l-2 border-[#e8b4a2] flex gap-5">
+            <span class="font-mono text-[#e8b4a2] font-bold text-xl">03</span>
+            <p class="text-slate-300 text-xs sm:text-sm font-light leading-relaxed">
+              Optimized AEPS biometric authentication speed by <strong class="text-white font-medium">80%</strong> and reduced transaction failures by <strong class="text-white font-medium">70%</strong>.
+            </p>
+          </div>
+
+          <div class="luxury-card p-8 rounded-sm border-l-2 border-[#e8b4a2] flex gap-5">
+            <span class="font-mono text-[#e8b4a2] font-bold text-xl">04</span>
+            <p class="text-slate-300 text-xs sm:text-sm font-light leading-relaxed">
+              Published an <strong class="text-white font-medium">IEEE research paper</strong> on technological explorations of conversational voice assistants.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION WITH EMBEDDED MAP -->
+    <section id="contact" data-destination="HORIZON TERMINAL" data-trajectory="TRAJECTORY: FINAL TRANSIT // DOCKING COMPLETE" class="py-28 px-6 border-t border-white/[0.05] bg-black">
+      <div class="max-w-6xl mx-auto">
+        <div class="mb-14">
+          <span class="font-mono text-xs text-[#e8b4a2] uppercase tracking-widest block mb-2">Inquiries</span>
+          <h2 class="font-display text-3xl sm:text-5xl font-bold text-white">Get in Touch</h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          <div class="lg:col-span-5 space-y-4">
+            <div class="luxury-card p-6 rounded-sm flex items-start gap-4">
+              <i data-lucide="map-pin" class="w-5 h-5 text-[#e8b4a2] flex-shrink-0 mt-0.5"></i>
+              <div>
+                <h4 class="font-sans font-bold text-white text-xs uppercase">Location</h4>
+                <p class="text-xs text-slate-400 mt-1 font-mono">221, Mohalla Bhoorey Khan, Near Ghoonghat Banquet Hall, Pilibhit, India</p>
+              </div>
+            </div>
+
+            <div class="luxury-card p-6 rounded-sm flex items-start gap-4">
+              <i data-lucide="phone" class="w-5 h-5 text-[#e8b4a2] flex-shrink-0 mt-0.5"></i>
+              <div>
+                <h4 class="font-sans font-bold text-white text-xs uppercase">Phone</h4>
+                <p class="text-xs text-slate-400 mt-1 font-mono">+91 7017528755</p>
+              </div>
+            </div>
+
+            <div class="luxury-card p-6 rounded-sm flex items-start gap-4">
+              <i data-lucide="mail" class="w-5 h-5 text-[#e8b4a2] flex-shrink-0 mt-0.5"></i>
+              <div>
+                <h4 class="font-sans font-bold text-white text-xs uppercase">Email</h4>
+                <p class="text-xs text-slate-400 mt-1 font-mono">aaanas372@gmail.com</p>
+              </div>
+            </div>
+
+            <div class="rounded-sm overflow-hidden border border-white/10 luxury-card h-52">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14114.192589926276!2d79.8083136!3d28.6424305!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39a014a1a4f7fdfd%3A0x9f26360e0a77c302!2sPilibhit%2C%20Uttar%20Pradesh%2C%20India!5e0!3m2!1sen!2sin!4v1676961268712!5m2!1sen!2sin"
+                width="100%" height="100%" style="border:0; filter: invert(90%) hue-rotate(180deg) grayscale(20%);" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 luxury-card p-8 sm:p-10 rounded-sm">
+            <form onsubmit="handleForm(event)" class="space-y-6">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label class="block font-mono text-[11px] uppercase tracking-wider text-slate-400 mb-2">Your Name</label>
+                  <input type="text" required class="w-full px-4 py-3 rounded-sm luxury-card border border-white/10 text-white font-mono text-xs focus:border-[#e8b4a2] focus:outline-none transition-colors" placeholder="Name">
+                </div>
+                <div>
+                  <label class="block font-mono text-[11px] uppercase tracking-wider text-slate-400 mb-2">Your Email</label>
+                  <input type="email" required class="w-full px-4 py-3 rounded-sm luxury-card border border-white/10 text-white font-mono text-xs focus:border-[#e8b4a2] focus:outline-none transition-colors" placeholder="email@domain.com">
+                </div>
+              </div>
+
+              <div>
+                <label class="block font-mono text-[11px] uppercase tracking-wider text-slate-400 mb-2">Subject</label>
+                <input type="text" required class="w-full px-4 py-3 rounded-sm luxury-card border border-white/10 text-white font-mono text-xs focus:border-[#e8b4a2] focus:outline-none transition-colors" placeholder="Opportunity or Inquiry">
+              </div>
+
+              <div>
+                <label class="block font-mono text-[11px] uppercase tracking-wider text-slate-400 mb-2">Message</label>
+                <textarea rows="5" required class="w-full px-4 py-3 rounded-sm luxury-card border border-white/10 text-white font-mono text-xs focus:border-[#e8b4a2] focus:outline-none transition-colors" placeholder="Discussing engineering requirements, architecture, or roles..."></textarea>
+              </div>
+
+              <button type="submit" class="w-full py-3.5 rounded-sm font-sans font-bold text-xs uppercase tracking-wider text-black bg-[#e8b4a2] hover:bg-[#f7d6cd] transition-all shadow-[0_0_20px_rgba(232,180,162,0.25)]">
+                Send Message
+              </button>
+              <div id="form-msg" class="hidden text-center font-mono text-xs text-[#e8b4a2] pt-2">Message sent successfully.</div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-10 px-8 border-t border-white/[0.05] bg-[#02040a]">
+      <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[11px] text-slate-500">
+        <p>© 2026 Mohd Anas Ansari. All Rights Reserved.</p>
+        <div class="flex items-center gap-6">
+          <a href="https://www.linkedin.com/in/iamanasansari/" target="_blank" class="hover:text-[#e8b4a2] transition-colors">LinkedIn</a>
+          <a href="https://github.com/iammohdanas" target="_blank" class="hover:text-[#e8b4a2] transition-colors">GitHub</a>
+          <a href="https://iamanasansari.space/" target="_blank" class="hover:text-[#e8b4a2] transition-colors">iamanasansari.space</a>
+        </div>
+      </div>
+    </footer>
 
   </main>
 
-  <footer id="footer" class="footer position-relative light-background">
+  <!-- 3D Multi-Planet & Interplanetary Spacecraft Engine -->
+  <script>
+    lucide.createIcons();
 
-    <div class="container">
-      <div class="copyright text-center ">
-        <p>© <span>Copyright</span> <strong class="px-1 sitename">iamAnasAnsari</strong> <span>All Rights
-            Reserved</span></p>
-      </div>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you've purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> Distributed by <a href="https://themewagon.com">ThemeWagon</a> -->
-      </div>
-    </div>
+    // 1. WebGL Three.js Scene Setup
+    const canvas = document.getElementById('webgl-canvas');
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
 
-  </footer>
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-  <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
-      class="bi bi-arrow-up-short"></i></a>
+    // Starfield
+    const starsGeo = new THREE.BufferGeometry();
+    const starCount = 1200;
+    const starPos = new Float32Array(starCount * 3);
+    for (let i = 0; i < starCount * 3; i += 3) {
+      starPos[i] = (Math.random() - 0.5) * 60;
+      starPos[i + 1] = (Math.random() - 0.5) * 60;
+      starPos[i + 2] = (Math.random() - 0.5) * 60;
+    }
+    starsGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+    const starMat = new THREE.PointsMaterial({
+      size: 0.03,
+      color: 0xf7d6cd,
+      transparent: true,
+      opacity: 0.4
+    });
+    const starField = new THREE.Points(starsGeo, starMat);
+    scene.add(starField);
 
-  <!-- Preloader -->
-  <div id="preloader"></div>
+    // Planet Builder
+    function createPlanet(radius, color, wireColor, hasRing = false, ringRadius = 0) {
+      const group = new THREE.Group();
+      
+      const sphereGeo = new THREE.SphereGeometry(radius, 48, 48);
+      const sphereMat = new THREE.MeshStandardMaterial({
+        color: color,
+        metalness: 0.75,
+        roughness: 0.3
+      });
+      const sphere = new THREE.Mesh(sphereGeo, sphereMat);
+      group.add(sphere);
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/typed.js/typed.umd.js"></script>
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+      const wireGeo = new THREE.SphereGeometry(radius * 1.04, 24, 24);
+      const wireMat = new THREE.MeshBasicMaterial({
+        color: wireColor,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.15
+      });
+      const wire = new THREE.Mesh(wireGeo, wireMat);
+      group.add(wire);
 
-  <!-- Main JS File -->
-  <script src="assets/js/main.js"></script>
+      if (hasRing) {
+        const ringGeo = new THREE.RingGeometry(radius * 1.3, ringRadius, 48);
+        const ringMat = new THREE.MeshBasicMaterial({
+          color: wireColor,
+          side: THREE.DoubleSide,
+          transparent: true,
+          opacity: 0.22
+        });
+        const ring = new THREE.Mesh(ringGeo, ringMat);
+        ring.rotation.x = Math.PI / 2.2;
+        group.add(ring);
+      }
 
+      return { group, sphere, wire };
+    }
+
+    // Solar System Planets in 3D Space
+    const planetHero = createPlanet(2.2, 0x1c100e, 0xe8b4a2, true, 3.8);
+    planetHero.group.position.set(0, -0.4, 0);
+    scene.add(planetHero.group);
+
+    const planetAbout = createPlanet(1.7, 0x0a101d, 0x94a3b8);
+    planetAbout.group.position.set(-8, 3, -10);
+    scene.add(planetAbout.group);
+
+    const planetSkills = createPlanet(1.9, 0x1a1208, 0xf5d399, true, 2.9);
+    planetSkills.group.position.set(9, -2, -18);
+    scene.add(planetSkills.group);
+
+    const planetExp = createPlanet(2.4, 0x060914, 0xd99480, true, 4.2);
+    planetExp.group.position.set(-10, 4, -28);
+    scene.add(planetExp.group);
+
+    const planetProj = createPlanet(2.0, 0x041624, 0x38bdf8);
+    planetProj.group.position.set(8, -3, -38);
+    scene.add(planetProj.group);
+
+    const planetContact = createPlanet(2.6, 0x12070f, 0xe8b4a2, true, 4.6);
+    planetContact.group.position.set(0, 0, -48);
+    scene.add(planetContact.group);
+
+    // ==========================================
+    // 3D PROCEDURAL LUXURY SPACECRAFT BUILDER
+    // ==========================================
+    const spaceship = new THREE.Group();
+
+    // Fuselage (Sleek aerodynamic hull)
+    const hullGeo = new THREE.ConeGeometry(0.35, 1.4, 6);
+    const hullMat = new THREE.MeshStandardMaterial({
+      color: 0x1c2130,
+      metalness: 0.9,
+      roughness: 0.2
+    });
+    const hull = new THREE.Mesh(hullGeo, hullMat);
+    hull.rotation.x = Math.PI / 2;
+    spaceship.add(hull);
+
+    // Cockpit Canopy (Polished Glass Rose Gold)
+    const glassGeo = new THREE.BoxGeometry(0.18, 0.15, 0.5);
+    const glassMat = new THREE.MeshStandardMaterial({
+      color: 0xe8b4a2,
+      metalness: 0.95,
+      roughness: 0.1,
+      transparent: true,
+      opacity: 0.8
+    });
+    const glass = new THREE.Mesh(glassGeo, glassMat);
+    glass.position.set(0, 0.12, 0.1);
+    spaceship.add(glass);
+
+    // Delta Wing Array
+    const wingShape = new THREE.Shape();
+    wingShape.moveTo(0, -0.4);
+    wingShape.lineTo(0.9, -0.6);
+    wingShape.lineTo(0, 0.3);
+    wingShape.lineTo(-0.9, -0.6);
+    wingShape.closePath();
+
+    const wingGeo = new THREE.ShapeGeometry(wingShape);
+    const wingMat = new THREE.MeshStandardMaterial({
+      color: 0x0f1523,
+      metalness: 0.8,
+      roughness: 0.3,
+      side: THREE.DoubleSide
+    });
+    const wings = new THREE.Mesh(wingGeo, wingMat);
+    wings.rotation.x = Math.PI / 2;
+    wings.position.y = -0.05;
+    spaceship.add(wings);
+
+    // Plasma Engine Thruster Nozzle & Flame
+    const thrusterGeo = new THREE.CylinderGeometry(0.12, 0.18, 0.25, 12);
+    const thrusterMat = new THREE.MeshStandardMaterial({ color: 0x222222, metalness: 0.8 });
+    const thruster = new THREE.Mesh(thrusterGeo, thrusterMat);
+    thruster.rotation.x = Math.PI / 2;
+    thruster.position.z = 0.75;
+    spaceship.add(thruster);
+
+    // Dynamic Thruster Flame Cone
+    const flameGeo = new THREE.ConeGeometry(0.12, 0.7, 16);
+    const flameMat = new THREE.MeshBasicMaterial({
+      color: 0x38bdf8,
+      transparent: true,
+      opacity: 0.85
+    });
+    const flame = new THREE.Mesh(flameGeo, flameMat);
+    flame.rotation.x = -Math.PI / 2;
+    flame.position.z = 1.15;
+    spaceship.add(flame);
+
+    // Add spaceship to scene
+    spaceship.scale.set(0.7, 0.7, 0.7);
+    spaceship.position.set(1.5, -0.8, 4.2);
+    scene.add(spaceship);
+
+    // Lighting
+    const keyLight = new THREE.DirectionalLight(0xf7d6cd, 2.2);
+    keyLight.position.set(5, 5, 5);
+    scene.add(keyLight);
+
+    const fillLight = new THREE.DirectionalLight(0x38bdf8, 1.2);
+    fillLight.position.set(-6, -4, -4);
+    scene.add(fillLight);
+
+    const ambientLight = new THREE.AmbientLight(0x060814, 1.4);
+    scene.add(ambientLight);
+
+    camera.position.set(0, 0, 6.5);
+
+    // Resize Event
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // Parallax mouse variables
+    let mouseX = 0, mouseY = 0;
+    window.addEventListener('mousemove', (e) => {
+      mouseX = (e.clientX / window.innerWidth - 0.5) * 0.4;
+      mouseY = (e.clientY / window.innerHeight - 0.5) * 0.4;
+    });
+
+    // ==========================================
+    // 2. GSAP SCROLLTRIGGER ROCKET & CAMERA TRAVEL
+    // ==========================================
+    gsap.registerPlugin(ScrollTrigger);
+
+    const navigationWaypoints = [
+      { id: 'hero', camX: 0, camY: 0, camZ: 6.5, shipX: 1.5, shipY: -0.8, shipZ: 4.2, rotX: 0.1, rotY: -0.2, rotZ: 0 },
+      { id: 'about', camX: -5.5, camY: 3, camZ: -5, shipX: -6.5, shipY: 2.2, shipZ: -7.5, rotX: 0.2, rotY: -0.8, rotZ: 0.3 },
+      { id: 'skills', camX: 6.2, camY: -2, camZ: -13, shipX: 7.2, shipY: -2.8, shipZ: -15.5, rotX: -0.2, rotY: 0.7, rotZ: -0.2 },
+      { id: 'experience', camX: -6.8, camY: 4, camZ: -22, shipX: -8.0, shipY: 3.2, shipZ: -25.0, rotX: 0.3, rotY: -0.7, rotZ: 0.2 },
+      { id: 'portfolio', camX: 5.2, camY: -3, camZ: -32, shipX: 6.5, shipY: -3.8, shipZ: -35.2, rotX: -0.1, rotY: 0.8, rotZ: -0.3 },
+      { id: 'services', camX: -2.0, camY: 0, camZ: -41, shipX: -1.2, shipY: -0.5, shipZ: -44.5, rotX: 0.1, rotY: -0.3, rotZ: 0 },
+      { id: 'contact', camX: 0, camY: 0, camZ: -41, shipX: 0, shipY: -0.6, shipZ: -44.0, rotX: 0, rotY: 0, rotZ: 0 }
+    ];
+
+    navigationWaypoints.forEach(wp => {
+      const section = document.getElementById(wp.id);
+      if (!section) return;
+
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top center',
+        end: 'bottom center',
+        onEnter: () => navigateShip(wp, section),
+        onEnterBack: () => navigateShip(wp, section)
+      });
+    });
+
+    function navigateShip(wp, section) {
+      // Smooth Camera Travel
+      gsap.to(camera.position, {
+        x: wp.camX,
+        y: wp.camY,
+        z: wp.camZ,
+        duration: 2.0,
+        ease: 'power2.out'
+      });
+
+      // Smooth Spaceship Interplanetary Flight Transition
+      gsap.to(spaceship.position, {
+        x: wp.shipX,
+        y: wp.shipY,
+        z: wp.shipZ,
+        duration: 1.9,
+        ease: 'power2.out'
+      });
+
+      gsap.to(spaceship.rotation, {
+        x: wp.rotX,
+        y: wp.rotY,
+        z: wp.rotZ,
+        duration: 1.6,
+        ease: 'power2.out'
+      });
+
+      // Thruster Flame Flare on Travel
+      gsap.to(flame.scale, {
+        x: 1.8, y: 1.8, z: 2.2,
+        duration: 0.4,
+        yoyo: true,
+        repeat: 1
+      });
+
+      // Update Telemetry HUD
+      const dest = section.getAttribute('data-destination');
+      const traj = section.getAttribute('data-trajectory');
+      if (dest && document.getElementById('flight-status')) {
+        document.getElementById('flight-status').textContent = `INTERCEPT // ${dest}`;
+        document.getElementById('ship-coords').textContent = traj;
+      }
+    }
+
+    // 3. Render Animation Loop
+    const clock = new THREE.Clock();
+    function animate() {
+      const delta = clock.getElapsedTime();
+
+      // Planet Rotations
+      planetHero.group.rotation.y = delta * 0.08;
+      planetAbout.group.rotation.y = delta * 0.09;
+      planetSkills.group.rotation.y = -delta * 0.07;
+      planetExp.group.rotation.y = delta * 0.05;
+      planetProj.group.rotation.y = delta * 0.1;
+      planetContact.group.rotation.y = delta * 0.06;
+
+      starField.rotation.y = delta * 0.01;
+
+      // Rocket Hover Floating Physics & Thruster Flame Flicker
+      spaceship.position.y += Math.sin(delta * 3) * 0.003;
+      flame.scale.z = 1.0 + Math.sin(delta * 25) * 0.2;
+
+      // Mouse Parallax
+      camera.position.x += (mouseX - camera.position.x * 0.02) * 0.05;
+      camera.position.y += (-mouseY - camera.position.y * 0.02) * 0.05;
+
+      renderer.render(scene, camera);
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    // 4. Hero Subtitle Typing Loop
+    const roles = [
+      "Agentic AI & LangGraph Specialist",
+      "Full-Stack Platform Developer",
+      "Fintech Transaction Architect"
+    ];
+    let rIdx = 0, cIdx = 0, isDeleting = false;
+    const typeEl = document.getElementById('hero-typing');
+
+    function typeLoop() {
+      const current = roles[rIdx];
+      typeEl.textContent = isDeleting ? current.substring(0, cIdx - 1) : current.substring(0, cIdx + 1);
+      cIdx = isDeleting ? cIdx - 1 : cIdx + 1;
+
+      let speed = isDeleting ? 25 : 55;
+      if (!isDeleting && cIdx === current.length) {
+        speed = 2200;
+        isDeleting = true;
+      } else if (isDeleting && cIdx === 0) {
+        isDeleting = false;
+        rIdx = (rIdx + 1) % roles.length;
+        speed = 400;
+      }
+      setTimeout(typeLoop, speed);
+    }
+    typeLoop();
+
+    // 5. Counter Number Increments
+    document.querySelectorAll('.counter').forEach(el => {
+      const target = +el.getAttribute('data-target');
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'top 90%',
+        onEnter: () => {
+          gsap.to(el, {
+            innerText: target,
+            duration: 1.8,
+            snap: { innerText: 1 },
+            ease: 'power3.out'
+          });
+        }
+      });
+    });
+
+    // 6. Portfolio Filter
+    function filterSystem(type) {
+      const cards = document.querySelectorAll('.sys-card');
+      const tabs = document.querySelectorAll('.filter-tab');
+
+      tabs.forEach(t => {
+        t.classList.remove('bg-[#e8b4a2]', 'text-black', 'font-semibold');
+        t.classList.add('text-slate-400');
+      });
+      event.target.classList.add('bg-[#e8b4a2]', 'text-black', 'font-semibold');
+      event.target.classList.remove('text-slate-400');
+
+      cards.forEach(card => {
+        if (type === 'all' || card.classList.contains(type)) {
+          card.style.display = 'block';
+          gsap.to(card, { opacity: 1, duration: 0.3 });
+        } else {
+          gsap.to(card, { opacity: 0, duration: 0.2, onComplete: () => card.style.display = 'none' });
+        }
+      });
+    }
+
+    // 7. Contact Form Simulation
+    function handleForm(e) {
+      e.preventDefault();
+      const status = document.getElementById('form-msg');
+      status.classList.remove('hidden');
+      setTimeout(() => status.classList.add('hidden'), 4000);
+      e.target.reset();
+    }
+  </script>
 </body>
-
 </html>
